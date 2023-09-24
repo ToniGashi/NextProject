@@ -21,7 +21,12 @@ export default function Header() {
             value={searchBar}
             onChange={(e)=>{setSearchBar(e.target.value);}}
           />
-          <button className="rounded bg-red-600 px-9 py-2 text-white" onClick={()=>{router.push('/search')}}>
+          <button 
+            className="rounded bg-red-600 px-9 py-2 text-white" 
+            onClick={()=>{
+              if(searchBar==="") return;
+              router.push(`/search?searchBar=${searchBar}`)}
+            }>
             Let's go
           </button>
         </div>

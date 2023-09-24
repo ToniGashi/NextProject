@@ -22,6 +22,7 @@ model Restaurant {
   location      Location @relation(fields: [location_id], references: [id])
   cuisine_id    Int
   cuisine       Cuisine @relation(fields: [cuisine_id], references: [id])
+  reviews       Review[]
   slug          String @unique
   price         PRICE
   items         Item[]
@@ -61,4 +62,30 @@ model Cuisine {
   created_at    DateTime @default(now())
   updated_at    DateTime @updatedAt
 
+}
+model User {
+  id            Int @id @default(autoincrement())
+  first_name    String
+  last_name     String
+  city          String
+  email         String
+  phone         String
+  password      String
+  reviews       Review[]
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+}
+
+model Review {
+  id            Int @id @default(autoincrement())
+  first_name    String
+  last_name     String
+  rating        Float
+  text          String
+  user_id       Int
+  user          User @relation(fields: [user_id], references: [id])
+  restaurant_id Int
+  restaurant    Restaurant @relation(fields: [restaurant_id], references: [id])
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
 }
