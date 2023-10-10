@@ -1,0 +1,36 @@
+{
+    "env": {
+      "browser": true,
+      "es2021": true,
+      "amd": true,
+      "node": true,
+      "jest": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:json/recommended",
+      "plugin:react/recommended",
+      "plugin:prettier/recommended"
+    ],
+    "overrides": [],
+    "parser": "@babel/eslint-parser",
+    "parserOptions": {
+      "requireConfigFile": false,
+      "babelOptions": {
+        "presets": ["@babel/preset-react"],
+        "babelrc": false,
+        "configFile": false,
+        "sourceType": "module"
+      }
+    },
+    "plugins": ["react"],
+    "rules": {
+      "prettier/prettier": ["warn"],
+      "no-unused-vars": ["warn"],
+      "no-debugger": ["warn"],
+      "react/react-in-jsx-scope": "off",
+      "react/no-children-prop": "off",
+      "react/prop-types": "off"
+    }
+  }
+  

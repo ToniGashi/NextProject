@@ -57,12 +57,14 @@ const Search = async ({ searchParams } : { searchParams : { searchBar?: string, 
     <>
       <SearchHeader />
       <div className="flex py-4 m-auto w-2/3 justify-between items-start">
+        {/* @ts-expect-error Server Component */}
         <SearchSideBar searchParams={searchParams}/>
         <div className="w-5/6">
           {tempFilteredRestaurants.length > 0 ? 
-            tempFilteredRestaurants.map(restaurant => (
-              <SearchRestaurantCard restaurant={restaurant} key={restaurant.slug} />
-            )) : 
+            tempFilteredRestaurants.map(restaurant => {
+              {/* @ts-expect-error Server Component */}
+              return <SearchRestaurantCard restaurant={restaurant} key={restaurant.slug} />
+            }) : 
             'No Restaurants Found'}
         </div>
       </div>
