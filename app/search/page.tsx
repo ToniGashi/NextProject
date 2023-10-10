@@ -75,8 +75,9 @@ const Search = async ({
         <div className="w-5/6">
           {tempFilteredRestaurants.length > 0
             ? tempFilteredRestaurants.map((restaurant) => {
-              {/* @ts-expect-error Server Component */}
-                return (<SearchRestaurantCard
+                return (
+                  /* @ts-expect-error Server Component */
+                  <SearchRestaurantCard
                     restaurant={restaurant}
                     key={restaurant.slug}
                   />
