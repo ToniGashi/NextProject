@@ -49,8 +49,7 @@ export default async function SearchSideBar({
               href={{
                 pathname: '/search',
                 query: { ...searchParams, location: location.name }
-              }}
-            >
+              }}>
               {location.name}
             </Link>
           </div>
@@ -65,8 +64,7 @@ export default async function SearchSideBar({
               href={{
                 pathname: '/search',
                 query: { ...searchParams, cuisine: cuisine.name }
-              }}
-            >
+              }}>
               {cuisine.name}
             </Link>
           </div>
@@ -80,8 +78,7 @@ export default async function SearchSideBar({
             href={{
               pathname: '/search',
               query: { ...searchParams, price: PRICE.CHEAP }
-            }}
-          >
+            }}>
             $
           </Link>
           <Link
@@ -89,8 +86,7 @@ export default async function SearchSideBar({
             href={{
               pathname: '/search',
               query: { ...searchParams, price: PRICE.REGULAR }
-            }}
-          >
+            }}>
             $$
           </Link>
           <Link
@@ -98,8 +94,7 @@ export default async function SearchSideBar({
             href={{
               pathname: '/search',
               query: { ...searchParams, price: PRICE.EXPENSIVE }
-            }}
-          >
+            }}>
             $$$
           </Link>
         </div>

@@ -21,9 +21,8 @@ export default function SearchHeader() {
           onClick={() => {
             if (searchBar === '') return;
             router.push(`/search?searchBar=${searchBar}`);
-          }}
-        >
-          Let's go
+          }}>
+          {"Let's go"}
         </button>
       </div>
     </div>

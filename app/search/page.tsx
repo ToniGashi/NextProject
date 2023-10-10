@@ -72,7 +72,7 @@ const Search = async ({
       <div className="flex py-4 m-auto w-2/3 justify-between items-start">
         {/* @ts-expect-error Server Component */}
         <SearchSideBar searchParams={searchParams} />
-        <div className="w-5/6"><p></p>
+        <div className="w-5/6">
           {tempFilteredRestaurants.length > 0
             ? tempFilteredRestaurants.map((restaurant) => {
               {/* @ts-expect-error Server Component */}

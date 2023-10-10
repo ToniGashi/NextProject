@@ -40,7 +40,7 @@ const MenuList = async ({ slug }: { slug: string }) => {
               <MenuCard key={menuItem.id} menuItem={menuItem} />
             ))
           ) : (
-            <p>This restaurant has no items in it's menu for now</p>
+            <p>This restaurant has no items in {"it's"} menu for now</p>
           )}
         </div>
       </div>
