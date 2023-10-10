@@ -1,19 +1,20 @@
-import { Review } from "@prisma/client";
-import ReviewCard from "./ReviewCard";
+import { Review } from '@prisma/client';
+import ReviewCard from './ReviewCard';
 
-export default function RestaurantReviews({reviews}:{ reviews: Review[]}) {
-  if(reviews.length === 0) return 'No reviews available';
+export default function RestaurantReviews({ reviews }: { reviews: Review[] }) {
+  if (reviews.length === 0) return 'No reviews available';
 
   return (
     <div>
       <h1 className="font-bold text-3xl mt-10 mb-7 borber-b pb-5">
-        What {reviews.length} {reviews.length === 1 ? 'person' : 'people'} are saying
+        What {reviews.length} {reviews.length === 1 ? 'person' : 'people'} are
+        saying
       </h1>
       <div>
-      {reviews?.map(review => (
-        <ReviewCard review={review} key={review.id}/>
-      ))}
+        {reviews?.map((review) => (
+          <ReviewCard review={review} key={review.id} />
+        ))}
       </div>
     </div>
-  )
+  );
 }
