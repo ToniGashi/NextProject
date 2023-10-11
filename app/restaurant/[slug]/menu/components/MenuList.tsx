@@ -22,7 +22,7 @@ const fetchRestaurantMenuItems = async (slug: string): Promise<ItemType[]> => {
       items: true
     }
   });
-  if (!restaurant?.items) throw 'no restaurant items found';
+  if (!restaurant?.items) throw 'No menu found for a resataurant with this name';
   return restaurant.items;
 };
 

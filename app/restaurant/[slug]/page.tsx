@@ -6,6 +6,7 @@ import RestaurantDescription from './components/RestaurantDescription';
 import RestaurantImages from './components/RestaurantImages';
 import RestaurantReviews from './components/RestaurantReviews';
 import RestaurantReservationCard from './components/RestaurantReservationCard';
+import { notFound } from 'next/navigation';
 
 const prisma = new PrismaClient();
 
@@ -32,7 +33,10 @@ const fetchRestaurantBySlug = async (slug: string): Promise<RestaurantType> => {
     }
   });
 
-  if (!restaurant) throw 'No restaurant with this slug';
+  if (!restaurant) {
+    notFound();
+  }
+
   return restaurant;
 };
 

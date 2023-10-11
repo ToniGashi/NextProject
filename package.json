@@ -13,17 +13,24 @@
   },
   "dependencies": {
     "@babel/core": "^7.23.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.12",
     "@next/font": "13.1.4",
     "@prisma/client": "^5.4.1",
     "@types/node": "18.11.18",
     "@types/react": "18.0.27",
     "@types/react-dom": "18.0.10",
+    "bcrypt": "^5.1.1",
+    "jose": "^4.15.2",
     "next": "^13.5.4",
+    "postcss-import": "^15.1.0",
     "prisma": "^5.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "supabase": "^1.100.1",
-    "typescript": "*"
+    "typescript": "*",
+    "validator": "^13.11.0"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.22.15",

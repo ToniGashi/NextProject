@@ -68,7 +68,7 @@ model User {
   first_name    String
   last_name     String
   city          String
-  email         String
+  email         String  @unique
   phone         String
   password      String
   reviews       Review[]
