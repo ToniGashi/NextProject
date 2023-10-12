@@ -9,7 +9,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const authorization = req.headers['authorization'] as string;
-  const decodedJWT = jose.decodeJwt(authorization.split(' ')[1]);
+  const decodedJWT = jose.decodeJwt(authorization?.split(' ')[1]);
 
   if (!decodedJWT.email) {
     return res.status(401).json({

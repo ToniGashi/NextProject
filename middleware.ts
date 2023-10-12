@@ -13,7 +13,7 @@ export async function middleware(req: NextRequest) {
     );
   }
 
-  const jwtToken = authorization.split(' ')[1];
+  const jwtToken = authorization?.split(' ')[1];
 
   if (!jwtToken) {
     return new NextResponse(

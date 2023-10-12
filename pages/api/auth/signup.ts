@@ -87,7 +87,7 @@ export default async function handler(
     });
 
     return res.status(200).json({
-      newUser: user
+      user: { ...user, password: undefined }
     });
   }
   return res.status(404).json('Unkown endpoint');

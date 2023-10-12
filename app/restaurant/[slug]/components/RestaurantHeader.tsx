@@ -1,5 +1,5 @@
 const renderTitle = (title: string) => {
-  const titleArray = title.split('-');
+  const titleArray = title?.split('-');
   titleArray[titleArray.length - 1] = `(${titleArray[titleArray.length - 1]})`;
   return titleArray.join(' ');
 };

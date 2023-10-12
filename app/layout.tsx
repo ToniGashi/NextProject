@@ -1,6 +1,7 @@
 import React from 'react';
 import NavBar from './components/NavBar';
 import './globals.css';
+import AuthContext from './context/AuthContext';
 
 export default function RootLayout({
   children
@@ -11,12 +12,14 @@ export default function RootLayout({
     <html lang="en">
       <head />
       <body>
-        <main className="bg-gray-100 min-h-screen w-screen text-black">
-          <main className="max-w-screen-2xl m-auto bg-white">
-            <NavBar />
-            {children}
+        <AuthContext>
+          <main className="bg-gray-100 min-h-screen w-screen text-black">
+            <main className="max-w-screen-2xl m-auto bg-white">
+              <NavBar />
+              {children}
+            </main>
           </main>
-        </main>
+        </AuthContext>
       </body>
     </html>
   );

@@ -1,8 +1,11 @@
 'use client';
 
-import { useReducer, useState } from 'react';
-import { Box, Button, Typography, Modal } from '@mui/material';
+import { useContext, useReducer, useState } from 'react';
+import { Box, Typography, Modal, Alert } from '@mui/material';
 import AuthModalInputs from './AuthModalInputs';
+import useAuth from '../../hooks/useAuth';
+import Loader from './Loader';
+import { AuthenticationContext } from '../context/AuthContext';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -98,12 +101,60 @@ export default function AuthModal({
 }) {
   const [state, dispatch] = useReducer(authReducer, INITIAL_STATE);
   const [open, setOpen] = useState(false);
+  const { loading, error } = useContext(AuthenticationContext);
+  const { signIn, signUp } = useAuth();
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const renderContent = (signInContent: string, signUpContent: string) => {
     return isSignInButton ? signInContent : signUpContent;
+  };
+
+  const renderError = (error: string | string[] | null) => {
+    if (error) {
+      if (typeof error === 'string')
+        return (
+          <Alert severity="error" className="mb-4">
+            {error}
+          </Alert>
+        );
+      else {
+        return error.map((error) => (
+          <Alert key={error} severity="error" className="mb-4">
+            {error}
+          </Alert>
+        ));
+      }
+    }
+  };
+
+  const shouldBeDisabled = () => {
+    if (!isSignInButton) {
+      return Object.values(state).find((el) => el === '') === undefined
+        ? false
+        : true;
+    }
+    return state.email === '' || state.password === '';
+  };
+
+  const handleClick = async () => {
+    if (isSignInButton) {
+      const resp = await signIn({
+        email: state.email,
+        password: state.password
+      });
+
+      if (resp) {
+        handleClose();
+      }
+    } else {
+      const resp = await signUp({ ...state });
+
+      if (resp) {
+        handleClose();
+      }
+    }
   };
 
   return (
@@ -123,22 +174,37 @@ export default function AuthModal({
         aria-describedby="modal-modal-description"
         className="text-black">
         <Box sx={style}>
-          <div className="p-2 h-[600px]">
-            <div className="uppercase font-bold text-center pb-2 border-b mb-2">
-              <p className="text-sm">
-                {renderContent('Sign In', 'Create Account')}
-              </p>
+          {loading ? (
+            <Loader />
+          ) : (
+            <div className="p-2 h-[600px]">
+              {renderError(error)}
+              <div className="uppercase font-bold text-center pb-2 border-b mb-2">
+                <p className="text-sm">
+                  {renderContent('Sign In', 'Create Account')}
+                </p>
+              </div>
+              <div>
+                <Typography className="text-2xl font-light text-center">
+                  {renderContent(
+                    'Sign in to your account',
+                    'Create an account'
+                  )}
+                </Typography>
+                <AuthModalInputs
+                  isSignInButton={isSignInButton}
+                  state={state}
+                  dispatch={dispatch}
+                />
+                <button
+                  disabled={shouldBeDisabled()}
+                  onClick={() => handleClick()}
+                  className="uppercase bg-red-600 w-full text-white p-3 rounded text-sm disabled:bg-gray-400">
+                  {renderContent('Sign in', 'Create account')}
+                </button>
+              </div>
             </div>
-            <div>
-              <Typography className="text-2xl font-light text-center">
-                {renderContent('Sign in to your account', 'Create an account')}
-              </Typography>
-              <AuthModalInputs state={state} dispatch={dispatch} />
-              <button className="uppercase bg-red-600 w-full text-white p-3 rounded text-sm">
-                {renderContent('Sign in', 'Create account')}
-              </button>
-            </div>
-          </div>
+          )}
         </Box>
       </Modal>
     </div>
