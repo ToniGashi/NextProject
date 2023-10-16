@@ -17,6 +17,8 @@ interface RestaurantType {
   images: string[];
   reviews: Review[];
   slug: string;
+  open_time: string;
+  close_time: string;
 }
 const fetchRestaurantBySlug = async (slug: string): Promise<RestaurantType> => {
   const restaurant = await prisma.restaurant.findUnique({
@@ -26,7 +28,9 @@ const fetchRestaurantBySlug = async (slug: string): Promise<RestaurantType> => {
       images: true,
       description: true,
       reviews: true,
-      slug: true
+      slug: true,
+      open_time: true,
+      close_time: true
     },
     where: {
       slug: slug
@@ -57,7 +61,11 @@ export default async function RestaurantPage({
         <RestaurantReviews reviews={restaurant.reviews} />
       </div>
       <div className="w-[27%] relative text-reg">
-        <RestaurantReservationCard />
+        <RestaurantReservationCard
+          slug={restaurant.slug}
+          openTime={restaurant.open_time}
+          closeTime={restaurant.close_time}
+        />
       </div>
     </>
   );
