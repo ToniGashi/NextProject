@@ -1,10 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
-
-interface availability {
-  time: string;
-  availables: boolean;
-}
 
 const useAvailabilities = () => {
   const [availabilites, setAvailabilities] = useState<any>();

@@ -2,7 +2,6 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcrypt';
 import validator from 'validator';
-import * as jose from 'jose';
 
 const prisma = new PrismaClient();
 

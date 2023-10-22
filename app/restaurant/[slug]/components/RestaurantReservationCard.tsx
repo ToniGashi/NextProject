@@ -97,14 +97,22 @@ export default function RestaurantReservationCard({
           </button>
           {availabilites && (
             <div className="flex flex-wrap gap-0.5 mt-2">
-              {availabilites.map(({ time }) => (
-                <Link
-                  href={`/reserve/${slug}?date=${date}T${time}&partySize=${selectedPartySize}`}
-                  key={time}
-                  className="bg-red-600 rounded text-white px-2 py-1 text-reg ">
-                  {time.substring(0, 5)}
-                </Link>
-              ))}
+              {availabilites.map(
+                ({ time, available }) =>
+                  !!available && (
+                    <Link
+                      href={`/reserve/${slug}?date=${date
+                        .toISOString()
+                        .substring(
+                          0,
+                          10
+                        )}T${time}&partySize=${selectedPartySize}`}
+                      key={time}
+                      className="bg-red-600 rounded text-white px-2 py-1 text-reg ">
+                      {time.substring(0, 5)}
+                    </Link>
+                  )
+              )}
             </div>
           )}
         </div>

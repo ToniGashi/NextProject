@@ -100,8 +100,8 @@ model Booking {
   booker_phone      String
   booker_first_name String
   booker_last_name  String
-  booker_occasion   String
-  booker_requests   String
+  booker_occasion   String?
+  booker_requests   String?
   restaurant_id     Int
   restaurant        Restaurant @relation(fields: [restaurant_id], references: [id])
   tables            BookingsOnTables[]

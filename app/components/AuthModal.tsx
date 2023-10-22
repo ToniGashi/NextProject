@@ -129,11 +129,11 @@ export default function AuthModal({
     }
   };
 
-  const shouldBeDisabled = () => {
+  const isButtonDisabled = () => {
     if (!isSignInButton) {
-      return Object.values(state).find((el) => el === '') === undefined
-        ? false
-        : true;
+      return Object.values(state).find((el) => el === '') !== undefined
+        ? true
+        : false;
     }
     return state.email === '' || state.password === '';
   };
@@ -197,7 +197,7 @@ export default function AuthModal({
                   dispatch={dispatch}
                 />
                 <button
-                  disabled={shouldBeDisabled()}
+                  disabled={isButtonDisabled()}
                   onClick={() => handleClick()}
                   className="uppercase bg-red-600 w-full text-white p-3 rounded text-sm disabled:bg-gray-400">
                   {renderContent('Sign in', 'Create account')}
