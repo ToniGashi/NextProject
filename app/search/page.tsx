@@ -64,11 +64,27 @@ const Search = async ({
     price?: PRICE;
   };
 }) => {
-  const tempFilteredRestaurants = await getFilteredRestaurants(searchParams);
+  const filteredRestaurants = await getFilteredRestaurants(searchParams);
+  const temporaryFilteringWord = searchParams.searchBar || '';
 
+  const tempFilteredRestaurants = filteredRestaurants.filter(
+    (restaurant) =>
+      restaurant.name
+        .toLowerCase()
+        .includes(temporaryFilteringWord.toLowerCase()) ||
+      restaurant.cuisine.name
+        .toLowerCase()
+        .includes(temporaryFilteringWord.toLowerCase()) ||
+      restaurant.location.name
+        .toLowerCase()
+        .includes(temporaryFilteringWord.toLowerCase()) ||
+      restaurant.price
+        .toLowerCase()
+        .includes(temporaryFilteringWord.toLowerCase())
+  );
   return (
     <>
-      <SearchHeader />
+      <SearchHeader searchParams={searchParams} />
       <div className="flex py-4 m-auto w-2/3 justify-between items-start">
         {/* @ts-expect-error Server Component */}
         <SearchSideBar searchParams={searchParams} />

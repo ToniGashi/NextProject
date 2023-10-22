@@ -1,9 +1,17 @@
 'use client';
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import { PRICE } from '@prisma/client';
 
-export default function SearchHeader() {
-  const router = useRouter();
+export default function SearchHeader({
+  searchParams
+}: {
+  searchParams: {
+    searchBar?: string;
+    location?: string;
+    cuisine?: string;
+    price?: PRICE;
+  }}) {
   const [searchBar, setSearchBar] = useState('');
 
   return (
@@ -16,14 +24,18 @@ export default function SearchHeader() {
           onChange={(e) => setSearchBar(e.target.value)}
           placeholder="State, city or town"
         />
-        <button
-          className="rounded bg-red-600 px-9 py-2 text-white"
-          onClick={() => {
-            if (searchBar === '') return;
-            router.push(`/search?searchBar=${searchBar}`);
+        <Link
+          href={{
+            pathname: `/search`,
+            query: {
+              ...searchParams,
+              searchBar: searchBar
+            }
           }}>
-          {"Let's go"}
-        </button>
+          <button className="rounded bg-red-600 px-9 py-2 text-white">
+            {"Let's go"}
+          </button>
+        </Link>
       </div>
     </div>
   );
