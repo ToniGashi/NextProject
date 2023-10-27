@@ -11,6 +11,7 @@ export default async function ReservePage({
   return (
     <div className="border-t h-screen">
       <div className="py-9 w-3/5 m-auto">
+        {/* @ts-expect-error Server Component */}
         <Header
           slug={params.slug}
           date={searchParams.date.split('T')[0]}

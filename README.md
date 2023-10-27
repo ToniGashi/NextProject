@@ -1,5 +1,8 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+It uses prisma as a CRM, supabase as a database host, tailwind as a CSS framework, bcrypt to hash and de-hash passwords, jose to code and decode the JWT which is used to authenticate a user, etc.
+
+
 ## Getting Started
 
 First, run the development server:
