@@ -1,5 +1,5 @@
 import React from 'react';
-import { AuthState, AuthActionKind } from './AuthModal';
+import { AuthState, AuthActionKind } from './AuthModalReducer';
 
 interface AuthModalInputProps {
   state: AuthState;

@@ -2,6 +2,9 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 It uses prisma as a CRM, supabase as a database host, tailwind as a CSS framework, bcrypt to hash and de-hash passwords, jose to code and decode the JWT which is used to authenticate a user, etc.
 
+The database of this project is not real and thus is not complete so when you try to reserve in any other restaurant 
+than Vivaan Fine Indian Cuisine (Ottawa), you will find that there are no free seats available and that is because
+there are no tables created for these other restaurants in the database.
 
 ## Getting Started
 
